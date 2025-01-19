@@ -1,0 +1,417 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parameter Description &mdash; GridCellsCond 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=01f34227"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Utility Functions" href="utility_functions.html" />
+    <link rel="prev" title="Running simulations" href="simulations.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            GridCellsCond
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulations.html">Running simulations</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Parameter Description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utility_functions.html">Utility Functions</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">GridCellsCond</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Parameter Description</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/param.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="parameter-description">
+<h1>Parameter Description<a class="headerlink" href="#parameter-description" title="Link to this heading"></a></h1>
+<p>List of all the parameters used in the model</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 60.0%" />
+<col style="width: 20.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Default value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>N_intrnrn</p></td>
+<td><p>Number of interneurons</p></td>
+<td><p>192</p></td>
+</tr>
+<tr class="row-odd"><td><p>N_stell</p></td>
+<td><p>Number of stellate cells</p></td>
+<td><p>384</p></td>
+</tr>
+<tr class="row-even"><td><p>N_per_sheet</p></td>
+<td><p>Number of cells in a ring (1D) or sheet(2D)</p></td>
+<td><p>192</p></td>
+</tr>
+<tr class="row-odd"><td><p>is_peak</p></td>
+<td><p>Normalised synaptic strength of interneuron to stellate (I-&gt;S)</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p>is_stdev</p></td>
+<td><p>Width of I-&gt;S synapse</p></td>
+<td><p>0.136</p></td>
+</tr>
+<tr class="row-odd"><td><p>is_mean</p></td>
+<td><p>Shift of the gaussian from the source for I-&gt;S synapse. <br> Symmetric on both sides of the source cell (neuron units).</p></td>
+<td><p>32</p></td>
+</tr>
+<tr class="row-even"><td><p>si_peak</p></td>
+<td><p>Normalised synaptic strength of stellate to interneurons</p></td>
+<td><p>2.43</p></td>
+</tr>
+<tr class="row-odd"><td><p>si_stdev</p></td>
+<td><p>Width of S-&gt;I synapse</p></td>
+<td><p>0.29</p></td>
+</tr>
+<tr class="row-even"><td><p>si_mean</p></td>
+<td><p>Amount of offset from stellate to interneurons (neuron units)</p></td>
+<td><p>22</p></td>
+</tr>
+<tr class="row-odd"><td><p>ii_peak</p></td>
+<td><p>Normalised synaptic strength of interneuron to interneuron</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p>ii_stdev</p></td>
+<td><p>Width of I-&gt;I synapse</p></td>
+<td><p>0.136</p></td>
+</tr>
+<tr class="row-odd"><td><p>ii_mean</p></td>
+<td><p>Shift of the gaussian from the source for I-&gt;I synapse. <br> Symmetric on both sides of the source cell (neuron units).</p></td>
+<td><p>32</p></td>
+</tr>
+<tr class="row-even"><td><p>N_per_axis</p></td>
+<td><p>(For 2D) Number of cells along the length (or width) of each sheet</p></td>
+<td><p>51</p></td>
+</tr>
+<tr class="row-odd"><td><p>N_sheets_stell</p></td>
+<td><p>(For Debugging) Number sheets of stellate cells</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p>conn_id</p></td>
+<td><p>ID for the configuration file for connectivity matrix</p></td>
+<td><p>1d</p></td>
+</tr>
+<tr class="row-odd"><td><p>instr_id</p></td>
+<td><p>ID for the instrumentation config</p></td>
+<td><p>1d</p></td>
+</tr>
+<tr class="row-even"><td><p>traj_id</p></td>
+<td><p>(For 1D) Trajectory ID</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>vel_type</p></td>
+<td><p>Type of velocity input to the network. (<code class="docutils literal notranslate"><span class="pre">const</span></code>, <code class="docutils literal notranslate"><span class="pre">input</span></code>, <code class="docutils literal notranslate"><span class="pre">PRED-IHD</span></code>, <code class="docutils literal notranslate"><span class="pre">ACVT-1DAC</span></code>)</p></td>
+<td><p>const</p></td>
+</tr>
+<tr class="row-even"><td><p>input_id</p></td>
+<td><p>(For single cell) Different types of pulse inputs used for single cell sims.</p></td>
+<td><p>False</p></td>
+</tr>
+<tr class="row-odd"><td><p>ss_syn_gmax</p></td>
+<td><p>Peak S-&gt;S synaptic strength (<span class="math notranslate nohighlight">\(\mu S\)</span>)</p></td>
+<td><p>6.00E-06</p></td>
+</tr>
+<tr class="row-even"><td><p>si_syn_gmax</p></td>
+<td><p>Peak S-&gt;I synaptic strength (<span class="math notranslate nohighlight">\(\mu S\)</span>)</p></td>
+<td><p>6.00E-06</p></td>
+</tr>
+<tr class="row-odd"><td><p>ii_syn_gmax</p></td>
+<td><p>Peak I-&gt;I synaptic strength (<span class="math notranslate nohighlight">\(\mu S\)</span>)</p></td>
+<td><p>0.0004</p></td>
+</tr>
+<tr class="row-even"><td><p>is_syn_gmax</p></td>
+<td><p>Peak I-&gt;S synaptic strength (<span class="math notranslate nohighlight">\(\mu S\)</span>)</p></td>
+<td><p>0.0001</p></td>
+</tr>
+<tr class="row-odd"><td><p>intrnrn_dc_amp</p></td>
+<td><p>External DC input to interneurons <cite>nA</cite></p></td>
+<td><p>0.0015</p></td>
+</tr>
+<tr class="row-even"><td><p>stell_const_dc</p></td>
+<td><p>External DC input to stellate <cite>nA</cite>. [<cite>right</cite>, <cite>left</cite> ] OR [<cite>east</cite>, <cite>west</cite>, <cite>north</cite>, <cite>south</cite>]</p></td>
+<td><p>[0.0015, -0.00275]</p></td>
+</tr>
+<tr class="row-odd"><td><p>stell_noise</p></td>
+<td><p>Gaussian noise for stellate during simulation. [<cite>duration</cite>, <cite>mean</cite>, <cite>std</cite>]</p></td>
+<td><p>[150, 0, 0]</p></td>
+</tr>
+<tr class="row-even"><td><p>stell_init_noise</p></td>
+<td><p>Initial gaussian noise for stellate. [<cite>duration</cite>, <cite>mean</cite>, <cite>std</cite>]</p></td>
+<td><p>[100, 0, 0.5]</p></td>
+</tr>
+<tr class="row-odd"><td><p>intrnrn_noise</p></td>
+<td><p>Gaussian noise for interneurons during simulation. [<cite>duration</cite>, <cite>mean</cite>, <cite>std</cite>]</p></td>
+<td><p>[150, 0, 0]</p></td>
+</tr>
+<tr class="row-even"><td><p>intrnrn_init_noise</p></td>
+<td><p>Initial gaussian noise for interneurons. [<cite>duration</cite>, <cite>mean</cite>, <cite>std</cite>]</p></td>
+<td><p>[100, 0, 0.5]</p></td>
+</tr>
+<tr class="row-odd"><td><p>noise_seed</p></td>
+<td><p>Seed for simulation noise</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>init_noise_seed</p></td>
+<td><p>Seed for initial noise</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Amp_i_theta</p></td>
+<td><p>Interneuron theta amplitude (<span class="math notranslate nohighlight">\(S/cm^2\)</span>)</p></td>
+<td><p>0.0001</p></td>
+</tr>
+<tr class="row-even"><td><p>phi_i_theta</p></td>
+<td><p>Interneuron theta phase</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>omega_i_theta</p></td>
+<td><p>Interneuron theta frequency (<cite>kHz</cite>).</p></td>
+<td><p>0.01</p></td>
+</tr>
+<tr class="row-even"><td><p>stell_theta_Amp</p></td>
+<td><p>Stellate theta amplitude (<span class="math notranslate nohighlight">\(S/cm^2\)</span>)</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>stell_theta_omega</p></td>
+<td><p>Stellate theta frequency (<cite>kHz</cite>).</p></td>
+<td><p>0.01</p></td>
+</tr>
+<tr class="row-even"><td><p>g_h_bar</p></td>
+<td><p>HCN maximal conductance (<span class="math notranslate nohighlight">\(S/cm^2\)</span>)</p></td>
+<td><p>0.0015</p></td>
+</tr>
+<tr class="row-odd"><td><p>gnap_bar</p></td>
+<td><p>Nap maximal conductance (<span class="math notranslate nohighlight">\(S/cm^2\)</span>)</p></td>
+<td><p>0.0005</p></td>
+</tr>
+<tr class="row-even"><td><p>hs_tau</p></td>
+<td><p>Factor for HCN (<span class="math notranslate nohighlight">\(\tau _s\)</span>)</p></td>
+<td><p>5.6</p></td>
+</tr>
+<tr class="row-odd"><td><p>hf_tau</p></td>
+<td><p>Factor for HCN (<span class="math notranslate nohighlight">\(\tau _f\)</span>)</p></td>
+<td><p>0.51</p></td>
+</tr>
+<tr class="row-even"><td><p>n_phases</p></td>
+<td><p>(Path integration) Number of cells between two grid fields</p></td>
+<td><p>64</p></td>
+</tr>
+<tr class="row-odd"><td><p>lambda0</p></td>
+<td><p>(Path integration) Circumference of the circular enclosure</p></td>
+<td><p>6.2831</p></td>
+</tr>
+<tr class="row-even"><td><p>init_allothetic_input</p></td>
+<td><p>(Path integration) Turn on allothetic input</p></td>
+<td><p>True</p></td>
+</tr>
+<tr class="row-odd"><td><p>allothetic_stell_dc</p></td>
+<td><p>(Path integration) DC to inactive stellate cells during allothetic input</p></td>
+<td><p>-0.00265</p></td>
+</tr>
+<tr class="row-even"><td><p>allothetic_nrn_n</p></td>
+<td><p>(Path integration) Number of neurons to pin for allothetic input</p></td>
+<td><p>10</p></td>
+</tr>
+<tr class="row-odd"><td><p>allothetic_dur</p></td>
+<td><p>Duration of allothetic input</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>vel_integ_or</p></td>
+<td><p>(Path integration) DC to inactive ring for path integration</p></td>
+<td><p>-0.002906</p></td>
+</tr>
+<tr class="row-odd"><td><p>si_asym_factor</p></td>
+<td><p>Asym factor for S-&gt;I widths (Default values gives the original network)</p></td>
+<td><p>[1, 1]</p></td>
+</tr>
+<tr class="row-even"><td><p>is_asym_factor</p></td>
+<td><p>Asym factor for I-&gt;S widths (Default values gives the original network)</p></td>
+<td><p>[1, 1]</p></td>
+</tr>
+<tr class="row-odd"><td><p>is_peak_asym_fact</p></td>
+<td><p>Asym factor for I-&gt;S peaks (Default values gives the original network)</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>is_mean_asym_factor</p></td>
+<td><p>Asym factor for I-&gt;S mean(Default values gives the original network)</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>extra_params</p></td>
+<td><p>Extra miscellaneous parameters</p></td>
+<td><p>{}</p></td>
+</tr>
+<tr class="row-even"><td><p>netcon_delay</p></td>
+<td><p>Delay for netcon spike transmission. (should &gt;0 for parallel simulations)</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>sim_date_time</p></td>
+<td><p>Date and time when the simulation was run</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>sim_dur</p></td>
+<td><p>Duration of simulation</p></td>
+<td><p>4500</p></td>
+</tr>
+<tr class="row-odd"><td><p>dt</p></td>
+<td><p>dt for NEURON integrator</p></td>
+<td><p>0.025</p></td>
+</tr>
+<tr class="row-even"><td><p>sim_id</p></td>
+<td><p>Simulation ID. Data files are named based on simulation ID.</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>sim_num</p></td>
+<td><p>Simulation number for multiple simulations</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>split_sim</p></td>
+<td><p>To split the sims into chunks for memory intensive simulation. <br> [<cite>state</cite>, <cite>duration_of_chunks</cite>]. Data is saved at the end every chunk. only for single simulations.</p></td>
+<td><p>[False, 1000]</p></td>
+</tr>
+<tr class="row-odd"><td><p>n_nodes</p></td>
+<td><p>FF</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>n_cpus</p></td>
+<td><p>Number of cores to utilize for simulations. If <code class="docutils literal notranslate"><span class="pre">None</span></code> then all available cores.</p></td>
+<td><p>40</p></td>
+</tr>
+<tr class="row-odd"><td><p>post_sim_analysis</p></td>
+<td><p><cite>Not applicable</cite></p></td>
+<td><p>False</p></td>
+</tr>
+<tr class="row-even"><td><p>show_progress_bar</p></td>
+<td><p>Show progress bar for single simulation</p></td>
+<td><p>False</p></td>
+</tr>
+<tr class="row-odd"><td><p>recorder_dt</p></td>
+<td><p>Time interval for recorders</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>data_root</p></td>
+<td><p>Base location to save data. In case data needs <br> to saved at location different than the project root</p></td>
+<td><p>data/</p></td>
+</tr>
+<tr class="row-odd"><td><p>python</p></td>
+<td><p><cite>Not applicable</cite></p></td>
+<td><p>python</p></td>
+</tr>
+<tr class="row-even"><td><p>build_conn_matrix</p></td>
+<td><p>To build connection matrix for every simulation. Alternative is to use a saved <br>  matrix at <cite>network_configs/connections/saved_matrices/</cite></p></td>
+<td><p>True</p></td>
+</tr>
+<tr class="row-odd"><td><p>save_conn_matrix</p></td>
+<td><p>To save the built matrix</p></td>
+<td><p>False</p></td>
+</tr>
+<tr class="row-even"><td><p>matrix_id</p></td>
+<td><p>Matrix ID. Use to differentiate same matrix config built with different set of parameters.</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>split_built_conn_matrix</p></td>
+<td><p><cite>Not applicable</cite></p></td>
+<td><p>False</p></td>
+</tr>
+<tr class="row-even"><td><p>record_handle_stell</p></td>
+<td><p>Recorder handle to record data from stellate cells. <br>  {<code class="docutils literal notranslate"><span class="pre">data_id</span></code>: {“state”:False, “cells_to_record”:”all”, “loc”:”location of the reference variable”}</p></td>
+<td><p>check <code class="docutils literal notranslate"><span class="pre">default_sim_params.json</span></code> for examples.</p></td>
+</tr>
+<tr class="row-odd"><td><p>record_handle_intrnrn</p></td>
+<td><p>Recorder handle to record data from interneurons.  <br> {<code class="docutils literal notranslate"><span class="pre">data_id</span></code>: {“state”:False, “cells_to_record”:”all”, “loc”:”location of the reference variable”}|br|</p></td>
+<td><p>check <code class="docutils literal notranslate"><span class="pre">default_sim_params.json</span></code> for examples.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="simulations.html" class="btn btn-neutral float-left" title="Running simulations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="utility_functions.html" class="btn btn-neutral float-right" title="Utility Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Inayath Shaikh.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
