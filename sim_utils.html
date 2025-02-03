@@ -1,253 +1,409 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Analysis Utilities" href="analysis_utils.html" /><link rel="prev" title="Utility Functions" href="utility_functions.html" />
+
+    <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
+        <title>Simulation Utilities - GridCellsCond</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=354aac6f" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=302659d7" />
+    
+    
 
 
-<!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="./">
-<head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Simulation Utilities &mdash; GridCellsCond 0.1.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
-
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
   
-      <script src="_static/jquery.js?v=5d32c60e"></script>
-      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=01f34227"></script>
-      <script src="_static/doctools.js?v=9bcbadda"></script>
-      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Conn utils" href="conn_utils.html" />
-    <link rel="prev" title="Utility Functions" href="utility_functions.html" /> 
-</head>
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
 
-<body class="wy-body-for-nav"> 
-  <div class="wy-grid-for-nav">
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
 
-          
-          
-          <a href="index.html" class="icon icon-home">
-            GridCellsCond
-          </a>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="simulations.html">Running simulations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="param.html">Parameter Description</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="utility_functions.html">Utility Functions</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Simulation Utilities</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#sim_utils.check_sim_dup"><code class="docutils literal notranslate"><span class="pre">check_sim_dup()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sim_utils.find_sim_num"><code class="docutils literal notranslate"><span class="pre">find_sim_num()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sim_utils.get_module_from_path"><code class="docutils literal notranslate"><span class="pre">get_module_from_path()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sim_utils.get_sim_num"><code class="docutils literal notranslate"><span class="pre">get_sim_num()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sim_utils.json_modify"><code class="docutils literal notranslate"><span class="pre">json_modify()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sim_utils.json_read"><code class="docutils literal notranslate"><span class="pre">json_read()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sim_utils.json_save"><code class="docutils literal notranslate"><span class="pre">json_save()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sim_utils.list_to_numpy"><code class="docutils literal notranslate"><span class="pre">list_to_numpy()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sim_utils.load_data"><code class="docutils literal notranslate"><span class="pre">load_data()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sim_utils.load_full_data"><code class="docutils literal notranslate"><span class="pre">load_full_data()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sim_utils.load_sim_params"><code class="docutils literal notranslate"><span class="pre">load_sim_params()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sim_utils.load_spikes"><code class="docutils literal notranslate"><span class="pre">load_spikes()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sim_utils.locate_data_dir"><code class="docutils literal notranslate"><span class="pre">locate_data_dir()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sim_utils.log_from_rank_0"><code class="docutils literal notranslate"><span class="pre">log_from_rank_0()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sim_utils.network_intialize"><code class="docutils literal notranslate"><span class="pre">network_intialize()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sim_utils.process_data_root"><code class="docutils literal notranslate"><span class="pre">process_data_root()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sim_utils.sim_run_arg_parser"><code class="docutils literal notranslate"><span class="pre">sim_run_arg_parser()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sim_utils.sim_setup_arg_parser"><code class="docutils literal notranslate"><span class="pre">sim_setup_arg_parser()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="conn_utils.html">Conn utils</a></li>
-</ul>
-</li>
-</ul>
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
 
-        </div>
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">GridCellsCond</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
       </div>
-    </nav>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">GridCellsCond</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulations.html">Project Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="param.html">Parameters</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="utility_functions.html">Utility Functions</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Utility Functions</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Simulation Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="analysis_utils.html">Analysis Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="analysis_pred_utils.html">Predictive Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conn_utils.html">Connectivity Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="instr_utils.html">Instrumentation Utilities</a></li>
+</ul>
+</li>
+</ul>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">GridCellsCond</a>
-      </nav>
-
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
-  <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="utility_functions.html">Utility Functions</a></li>
-      <li class="breadcrumb-item active">Simulation Utilities</li>
-      <li class="wy-breadcrumbs-aside">
-            <a href="_sources/sim_utils.rst.txt" rel="nofollow"> View page source</a>
-      </li>
-  </ul>
-  <hr/>
 </div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-             
-  <section id="module-sim_utils">
-<span id="simulation-utilities"></span><h1>Simulation Utilities<a class="headerlink" href="#module-sim_utils" title="Link to this heading"></a></h1>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="_sources/sim_utils.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="module-sim_utils">
+<span id="simulation-utilities"></span><h1>Simulation Utilities<a class="headerlink" href="#module-sim_utils" title="Link to this heading">¶</a></h1>
+<p>Utility functions for simulation setup, runs and handling data.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="sim_utils.check_sim_dup">
-<span class="sig-prename descclassname"><span class="pre">sim_utils.</span></span><span class="sig-name descname"><span class="pre">check_sim_dup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sim_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sim_num</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#sim_utils.check_sim_dup" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">sim_utils.</span></span><span class="sig-name descname"><span class="pre">check_sim_dup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sim_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sim_num</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#sim_utils.check_sim_dup" title="Link to this definition">¶</a></dt>
 <dd><p>Checks if a simulation number exists in the HDF5 file for a given simulation ID.</p>
-<dl class="simple">
-<dt>Parameters:</dt><dd><dl class="simple">
-<dt>sim_id<span class="classifier">int </span></dt><dd><p>The ID of the simulation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sim_id</strong> (<em>int</em>) – The ID of the simulation.</p></li>
+<li><p><strong>sim_num</strong> (<em>int</em>) – The number of the simulation to check for duplication.</p></li>
+</ul>
 </dd>
-<dt>sim_num<span class="classifier">int</span></dt><dd><p>The number of the simulation to check for duplication.</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the simulation number exists in the file, False otherwise.</p>
 </dd>
-</dl>
-</dd>
-<dt>Returns:</dt><dd><dl class="simple">
-<dt>bool: </dt><dd><p>True if the simulation number exists in the file, False otherwise.</p>
-</dd>
-</dl>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="sim_utils.find_sim_num">
-<span class="sig-prename descclassname"><span class="pre">sim_utils.</span></span><span class="sig-name descname"><span class="pre">find_sim_num</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param_check</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#sim_utils.find_sim_num" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">sim_utils.</span></span><span class="sig-name descname"><span class="pre">find_sim_num</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param_check</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#sim_utils.find_sim_num" title="Link to this definition">¶</a></dt>
 <dd><p>Find simulation numbers that was run with a given set of paramters.</p>
-<p>Useful for analysis. For e.g Finding the simulation number that was run with <code class="docutils literal notranslate"><span class="pre">si_peak=1.0</span></code></p>
-<dl class="simple">
-<dt>Parameters:</dt><dd><dl class="simple">
-<dt>params<span class="classifier">dict or Param</span></dt><dd><p>Dictionary of all simulations generated after a run of multi simulation.</p>
+<p>Useful for analysis. For e.g Finding the simulation number that was run with
+<code class="docutils literal notranslate"><span class="pre">si_peak=1.0</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>params</strong> (<em>dict or Param</em>) – Dictionary of all simulations generated after a
+run of multi simulation.</p></li>
+<li><p><strong>param_check</strong> (<em>dict</em>) – A dictionary of parameters to check for. E.g: {si_peak: 1}</p></li>
+</ul>
 </dd>
-<dt>param_check<span class="classifier">dict</span></dt><dd><p>A dictionary of parameters to check for. E.g: {si_peak: 1}</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A subset of global dictoinary containing only the simulations</dt><dd><p>that match the given parameters in param_check</p>
 </dd>
 </dl>
+</p>
 </dd>
-<dt>Returns:</dt><dd><dl class="simple">
-<dt>matches<span class="classifier">dict</span></dt><dd><p>A subset of global dictoinary containing only the simulations that match the given parameters in param_check</p>
-</dd>
-</dl>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>matches (dict)</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="sim_utils.get_module_from_path">
-<span class="sig-prename descclassname"><span class="pre">sim_utils.</span></span><span class="sig-name descname"><span class="pre">get_module_from_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#sim_utils.get_module_from_path" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">sim_utils.</span></span><span class="sig-name descname"><span class="pre">get_module_from_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#sim_utils.get_module_from_path" title="Link to this definition">¶</a></dt>
 <dd><p>Convert a file path to a module name.</p>
-<p>Used to import specs file that is passed as as argument to 
+<p>Used to import specs file that is passed as as argument to
 the simulation setup scripts.</p>
-<section id="parameters">
-<h2>Parameters:<a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
-<dl class="simple">
-<dt>file_path<span class="classifier">str</span></dt><dd><p>The relative file path (e.g., “specs/s_template.py”)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file_path</strong> (<em>str</em>) – The relative file path (e.g., “specs/s_template.py”)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The corresponding module name (e.g., “specs.s_template”)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
 </dd>
 </dl>
-</section>
-<section id="returns">
-<h2>Returns:<a class="headerlink" href="#returns" title="Link to this heading"></a></h2>
-<dl class="simple">
-<dt>str</dt><dd><p>The corresponding module name (e.g., “specs.s_template”)</p>
-</dd>
-</dl>
-</section>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="sim_utils.get_sim_num">
-<span class="sig-prename descclassname"><span class="pre">sim_utils.</span></span><span class="sig-name descname"><span class="pre">get_sim_num</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_iters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#sim_utils.get_sim_num" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">sim_utils.</span></span><span class="sig-name descname"><span class="pre">get_sim_num</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_iters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#sim_utils.get_sim_num" title="Link to this definition">¶</a></dt>
 <dd><p>Calculate the simulation number for the running iterartor indices.</p>
 <p>Useful for analysis.</p>
-<dl class="simple">
-<dt>Parameters:</dt><dd><dl class="simple">
-<dt>iters<span class="classifier">tuple</span></dt><dd><p>A tuple of current iteration indices.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>iters</strong> (<em>tuple</em>) – A tuple of current iteration indices.</p></li>
+<li><p><strong>n_iters</strong> (<em>tuple</em>) – A tuple of the total size for each iterator.</p></li>
+</ul>
 </dd>
-<dt>n_iters<span class="classifier">tuple</span></dt><dd><p>A tuple of the total size for each iterator.</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>simulation number matching the given iterator indices.</p>
 </dd>
-</dl>
-</dd>
-<dt>Returns:</dt><dd><dl class="simple">
-<dt>int</dt><dd><p>simulation number matching the given iterator indices.</p>
-</dd>
-</dl>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="sim_utils.json_modify">
-<span class="sig-prename descclassname"><span class="pre">sim_utils.</span></span><span class="sig-name descname"><span class="pre">json_modify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fname</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sim_utils.json_modify" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">sim_utils.</span></span><span class="sig-name descname"><span class="pre">json_modify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fname</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sim_utils.json_modify" title="Link to this definition">¶</a></dt>
 <dd><p>Modify an entry in JSON file using the given dictionary.</p>
 <p>If the file exists, it updates the file with the key-value pairs from the object.
 If the file does not exist, it creates a new file with the given object.</p>
-<dl class="simple">
-<dt>Parameters</dt><dd><dl class="simple">
-<dt>obj<span class="classifier">dict</span></dt><dd><p>The dictionary object containing key-value pairs to be added or updated in the JSON file.</p>
-</dd>
-<dt>fname<span class="classifier">str</span></dt><dd><p>The file name (including path) of the JSON file to be modified.</p>
-</dd>
-</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>obj</strong> (<em>dict</em>) – The dictionary object containing key-value pairs to be
+added or updated in the JSON file.</p></li>
+<li><p><strong>fname</strong> (<em>str</em>) – The file name (including path) of the JSON file to be modified.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="sim_utils.json_read">
-<span class="sig-prename descclassname"><span class="pre">sim_utils.</span></span><span class="sig-name descname"><span class="pre">json_read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#sim_utils.json_read" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">sim_utils.</span></span><span class="sig-name descname"><span class="pre">json_read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#sim_utils.json_read" title="Link to this definition">¶</a></dt>
 <dd><p>Wrapper function to read a JSON file and return the dictionary object.</p>
-<dl class="simple">
-<dt>Parameters:</dt><dd><dl class="simple">
-<dt>fname<span class="classifier">str</span></dt><dd><p>The file name to read the dictionary from.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>fname</strong> (<em>str</em>) – The file name to read the dictionary from.</p>
 </dd>
-</dl>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The dictionary object read from the JSON file.</p>
 </dd>
-<dt>Returns:</dt><dd><dl class="simple">
-<dt>dict </dt><dd><p>The dictionary object read from the JSON file.</p>
-</dd>
-</dl>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="sim_utils.json_save">
-<span class="sig-prename descclassname"><span class="pre">sim_utils.</span></span><span class="sig-name descname"><span class="pre">json_save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fname</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sim_utils.json_save" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">sim_utils.</span></span><span class="sig-name descname"><span class="pre">json_save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fname</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sim_utils.json_save" title="Link to this definition">¶</a></dt>
 <dd><p>Wrapper function to save a dictionary object to a JSON file.</p>
-<dl class="simple">
-<dt>Parameters:</dt><dd><dl class="simple">
-<dt>obj<span class="classifier">dict </span></dt><dd><p>The dictionary object to save.</p>
-</dd>
-<dt>fname: str</dt><dd><p>The file name to save the dictionary to.</p>
-</dd>
-</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>obj</strong> (<em>dict</em>) – The dictionary object to save.</p></li>
+<li><p><strong>fname</strong> (<em>str</em>) – The file name to save the dictionary to.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="sim_utils.list_to_numpy">
-<span class="sig-prename descclassname"><span class="pre">sim_utils.</span></span><span class="sig-name descname"><span class="pre">list_to_numpy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">LoL</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">nan</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#sim_utils.list_to_numpy" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">sim_utils.</span></span><span class="sig-name descname"><span class="pre">list_to_numpy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">LoL</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">nan</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#sim_utils.list_to_numpy" title="Link to this definition">¶</a></dt>
 <dd><p>Converts a list of lists (LoL) to a NumPy array, filling missing values with a specified fill value.</p>
 <p>Used for to convert list spike times with non-homogeneous lengths to a NumPy array to save in hdf5 format.</p>
-<dl class="simple">
-<dt>Parameters</dt><dd><dl class="simple">
-<dt>LoL<span class="classifier">list of lists</span></dt><dd><p>The input list of lists to be converted to a NumPy array.</p>
-</dd>
-<dt>fill<span class="classifier">float, optional</span></dt><dd><p>The value to use for filling missing values. Defaults to np.nan.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>LoL</strong> (<em>list of lists</em>) – The input list of lists to be converted to a NumPy array.</p></li>
+<li><p><strong>fill</strong> (<em>float, optional</em>) – The value to use for filling missing values. Defaults to np.nan.</p></li>
+</ul>
 </dd>
 </dl>
-</dd>
+<dl class="simple">
 <dt>Returns</dt><dd><p>numpy.ndarray: A NumPy array with the contents of the input list of lists, with missing values filled.</p>
 </dd>
 </dl>
@@ -255,237 +411,291 @@ If the file does not exist, it creates a new file with the given object.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="sim_utils.load_data">
-<span class="sig-prename descclassname"><span class="pre">sim_utils.</span></span><span class="sig-name descname"><span class="pre">load_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sim_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell_n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sim_num</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#sim_utils.load_data" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">sim_utils.</span></span><span class="sig-name descname"><span class="pre">load_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sim_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell_n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sim_num</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#sim_utils.load_data" title="Link to this definition">¶</a></dt>
 <dd><p>Load Non-spiking data for a given simulation ID.</p>
-<section id="id1">
-<h2>Parameters:<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
-<dl class="simple">
-<dt>sim_id<span class="classifier">str</span></dt><dd><p>Simulation ID to load data from.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sim_id</strong> (<em>str</em>) – Simulation ID to load data from.</p></li>
+<li><p><strong>data_id</strong> (<em>str</em>) – Data ID. e.g. ‘stell_v’</p></li>
+<li><p><strong>cell_n</strong> (<em>int, optional</em>) – Cell number to load data for, by default 0.</p></li>
+<li><p><strong>sim_num</strong> (<em>str, optional</em>) – Simulation number to load data from, by default 0.</p></li>
+</ul>
 </dd>
-<dt>data_id<span class="classifier">str</span></dt><dd><p>Data ID. e.g. ‘stell_v’</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The data array loaded from the HDF5 file</p>
 </dd>
-<dt>cell_n<span class="classifier">int, optional</span></dt><dd><p>Cell number to load data for, by default 0.</p>
-</dd>
-<dt>sim_num<span class="classifier">str, optional</span></dt><dd><p>Simulation number to load data from, by default 0.</p>
-</dd>
-</dl>
-</section>
-<section id="id2">
-<h2>Returns:<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
-<dl class="simple">
-<dt>np.ndarray</dt><dd><p>The data array loaded from the HDF5 file</p>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
 </dd>
 </dl>
-</section>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="sim_utils.load_full_data">
-<span class="sig-prename descclassname"><span class="pre">sim_utils.</span></span><span class="sig-name descname"><span class="pre">load_full_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sim_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sim_num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sim_utils.load_full_data" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">sim_utils.</span></span><span class="sig-name descname"><span class="pre">load_full_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sim_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sim_num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sim_utils.load_full_data" title="Link to this definition">¶</a></dt>
 <dd><p>Load Non-spiking data of all cells for a given simulation ID and number.</p>
-<section id="id3">
-<h2>Parameters:<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
-<dl class="simple">
-<dt>sim_id<span class="classifier">str</span></dt><dd><p>Simulation ID to load data from.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sim_id</strong> (<em>str</em>) – Simulation ID to load data from.</p></li>
+<li><p><strong>data_id</strong> (<em>str</em>) – Data ID. e.g. ‘stell_v’</p></li>
+<li><p><strong>cell_n</strong> (<em>int, optional</em>) – Cell number to load data for, by default 0.</p></li>
+<li><p><strong>sim_num</strong> (<em>str, optional</em>) – Simulation number to load data from, by default 0.</p></li>
+</ul>
 </dd>
-<dt>data_id<span class="classifier">str</span></dt><dd><p>Data ID. e.g. ‘stell_v’</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The data array loaded from the HDF5 file.</p>
 </dd>
-<dt>cell_n<span class="classifier">int, optional</span></dt><dd><p>Cell number to load data for, by default 0.</p>
-</dd>
-<dt>sim_num<span class="classifier">str, optional</span></dt><dd><p>Simulation number to load data from, by default 0.</p>
-</dd>
-</dl>
-</section>
-<section id="id4">
-<h2>Returns:<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
-<dl class="simple">
-<dt>np.ndarray</dt><dd><p>The data array loaded from the HDF5 file.</p>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
 </dd>
 </dl>
-</section>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="sim_utils.load_sim_params">
-<span class="sig-prename descclassname"><span class="pre">sim_utils.</span></span><span class="sig-name descname"><span class="pre">load_sim_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sim_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#sim_utils.load_sim_params" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">sim_utils.</span></span><span class="sig-name descname"><span class="pre">load_sim_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sim_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#sim_utils.load_sim_params" title="Link to this definition">¶</a></dt>
 <dd><p>Load simulation parameters.</p>
-<dl class="simple">
-<dt>Parameters:</dt><dd><dl class="simple">
-<dt>sim_id<span class="classifier">str</span></dt><dd><p>Simulation ID to load the parameters for.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sim_id</strong> (<em>str</em>) – Simulation ID to load the parameters for.</p></li>
+<li><p><strong>file_path (str, optional</strong> – Direct path to the JSON file containing
+the simulation parameters. If not provided, the parameters are
+located for the given <cite>sim_id</cite>.</p></li>
+</ul>
 </dd>
-<dt>file_path<span class="classifier">str, optional </span></dt><dd><p>Direct path to the JSON file containing the simulation parameters. 
-If not provided, the parameters are located for the given <cite>sim_id</cite>.</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The simulation parameters loaded from the JSON file.</p>
 </dd>
-</dl>
-</dd>
-<dt>Returns:</dt><dd><dl class="simple">
-<dt>dict </dt><dd><p>The simulation parameters loaded from the JSON file.</p>
-</dd>
-</dl>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="sim_utils.load_spikes">
-<span class="sig-prename descclassname"><span class="pre">sim_utils.</span></span><span class="sig-name descname"><span class="pre">load_spikes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sim_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sim_num</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="headerlink" href="#sim_utils.load_spikes" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">sim_utils.</span></span><span class="sig-name descname"><span class="pre">load_spikes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sim_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sim_num</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="headerlink" href="#sim_utils.load_spikes" title="Link to this definition">¶</a></dt>
 <dd><p>Load spike data for a given simulation ID.</p>
-<section id="id5">
-<h2>Parameters<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
-<dl class="simple">
-<dt>sim_id<span class="classifier">str</span></dt><dd><p>Simulation ID to load spikes from.</p>
-</dd>
-<dt>sim_num<span class="classifier">int, optional</span></dt><dd><p>Simulation number to load spikes from, by default 0 (single sim).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sim_id</strong> (<em>str</em>) – Simulation ID to load spikes from.</p></li>
+<li><p><strong>sim_num</strong> (<em>int, optional</em>) – Simulation number to load spikes from,
+by default 0 (single sim).</p></li>
+</ul>
 </dd>
 </dl>
-</section>
-<section id="id6">
-<h2>Returns<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
 <dl class="simple">
+<dt>Returns</dt><dd><dl class="simple">
 <dt>tuple</dt><dd><p>A tuple containing two lists of lists:
 - stell_spikes_l: List of spike times for stellate cells.
 - intrnrn_spikes_l: List of spike times for interneurons.</p>
 </dd>
 </dl>
-</section>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="sim_utils.locate_data_dir">
-<span class="sig-prename descclassname"><span class="pre">sim_utils.</span></span><span class="sig-name descname"><span class="pre">locate_data_dir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sim_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#sim_utils.locate_data_dir" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">sim_utils.</span></span><span class="sig-name descname"><span class="pre">locate_data_dir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sim_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#sim_utils.locate_data_dir" title="Link to this definition">¶</a></dt>
 <dd><p>Find the location of the data directory for a given simulation ID.</p>
-<p>The function checks for the existence of the data directory in several predefined locations.</p>
+<p>The function checks for the existence of the data directory in several
+predefined locations.</p>
 <ol class="arabic simple">
 <li><p>“data/” (local)</p></li>
 <li><p>“/data/{user}/data/” (global)</p></li>
 </ol>
-<p>The {user} placeholder is replaced with the current user’s username obtained from the environment variables “USERNAME” or “USER”.</p>
-<dl class="simple">
-<dt>Parameters:</dt><dd><dl class="simple">
-<dt>sim_id<span class="classifier">str</span></dt><dd><p>The sim ID to locate the data directory for.</p>
+<p>The {user} placeholder is replaced with the current user’s username obtained
+from the environment variables “USERNAME” or “USER”.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sim_id</strong> (<em>str</em>) – The sim ID to locate the data directory for.</p>
 </dd>
-</dl>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The location of the data directory.</p>
 </dd>
-<dt>Returns:</dt><dd><dl class="simple">
-<dt>str</dt><dd><p>The location of the data directory.</p>
-</dd>
-</dl>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="sim_utils.log_from_rank_0">
-<span class="sig-prename descclassname"><span class="pre">sim_utils.</span></span><span class="sig-name descname"><span class="pre">log_from_rank_0</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Logger</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rank</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">20</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sim_utils.log_from_rank_0" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">sim_utils.</span></span><span class="sig-name descname"><span class="pre">log_from_rank_0</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Logger</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rank</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">20</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sim_utils.log_from_rank_0" title="Link to this definition">¶</a></dt>
 <dd><p>Logs a message if the rank is 0.</p>
-<dl class="simple">
-<dt>Parameters:</dt><dd><dl class="simple">
-<dt>logger<span class="classifier">logging.Logger</span></dt><dd><p>The logger object to use for logging.</p>
-</dd>
-<dt>rank<span class="classifier">int: </span></dt><dd><p>The rank of the process.</p>
-</dd>
-<dt>msg<span class="classifier">str </span></dt><dd><p>The message to be logged.</p>
-</dd>
-</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>logger</strong> (<em>logging.Logger</em>) – The logger object to use for logging.</p></li>
+<li><p><strong>rank</strong> (<em>int</em>) – The rank of the process.</p></li>
+<li><p><strong>msg</strong> (<em>str</em>) – The message to be logged.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="sim_utils.network_intialize">
-<span class="sig-prename descclassname"><span class="pre">sim_utils.</span></span><span class="sig-name descname"><span class="pre">network_intialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sim_utils.network_intialize" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">sim_utils.</span></span><span class="sig-name descname"><span class="pre">network_intialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sim_utils.network_intialize" title="Link to this definition">¶</a></dt>
 <dd><p>Initialize network and setup instrumentation</p>
-<dl class="simple">
-<dt>Parameters:</dt><dd><dl class="simple">
-<dt>params<span class="classifier">dict or Param</span></dt><dd><p>Parameter dictionary</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>params</strong> (<em>dict or Param</em>) – Parameter dictionary</p>
 </dd>
-</dl>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Network object that includes cells and instrumentations</p>
 </dd>
-<dt>Returns:</dt><dd><dl class="simple">
-<dt>network </dt><dd><p>Network object that includes cells and instrumentations</p>
-</dd>
-</dl>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>network</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="sim_utils.process_data_root">
-<span class="sig-prename descclassname"><span class="pre">sim_utils.</span></span><span class="sig-name descname"><span class="pre">process_data_root</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#sim_utils.process_data_root" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">sim_utils.</span></span><span class="sig-name descname"><span class="pre">process_data_root</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#sim_utils.process_data_root" title="Link to this definition">¶</a></dt>
 <dd><p>Processes the given data root path to ensure it ends with a slash.</p>
-<p>Parameters:
-data_root : str</p>
-<blockquote>
-<div><p>The root path to the data directory.</p>
-</div></blockquote>
-<p>Returns:
-str</p>
-<blockquote>
-<div><p>The data root path ending with a slash.</p>
-</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data_root</strong> (<em>str</em>) – The root path to the data directory.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The data root path ending with a slash.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="sim_utils.sim_run_arg_parser">
-<span class="sig-prename descclassname"><span class="pre">sim_utils.</span></span><span class="sig-name descname"><span class="pre">sim_run_arg_parser</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ArgumentParser</span></span></span><a class="headerlink" href="#sim_utils.sim_run_arg_parser" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">sim_utils.</span></span><span class="sig-name descname"><span class="pre">sim_run_arg_parser</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ArgumentParser</span></span></span><a class="headerlink" href="#sim_utils.sim_run_arg_parser" title="Link to this definition">¶</a></dt>
 <dd><p>Set up the argument parser for the simulation run.</p>
 <p>Argument parser is initialzed and processed here to avoid cluttering
 the main run file.</p>
-<section id="id7">
-<h2>Returns<a class="headerlink" href="#id7" title="Link to this heading"></a></h2>
-<dl class="simple">
-<dt>argparse.ArgumentParser</dt><dd><p>The argument parser with the arguments added.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The argument parser with the arguments added.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>argparse.ArgumentParser</p>
 </dd>
 </dl>
-</section>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="sim_utils.sim_setup_arg_parser">
-<span class="sig-prename descclassname"><span class="pre">sim_utils.</span></span><span class="sig-name descname"><span class="pre">sim_setup_arg_parser</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ArgumentParser</span></span></span><a class="headerlink" href="#sim_utils.sim_setup_arg_parser" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">sim_utils.</span></span><span class="sig-name descname"><span class="pre">sim_setup_arg_parser</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ArgumentParser</span></span></span><a class="headerlink" href="#sim_utils.sim_setup_arg_parser" title="Link to this definition">¶</a></dt>
 <dd><p>Set up the argument parser for the simulation.</p>
 <p>Argument parser is initialzed and processed here to avoid cluttering
 the main setup file.</p>
-<section id="id8">
-<h2>Returns<a class="headerlink" href="#id8" title="Link to this heading"></a></h2>
-<dl class="simple">
-<dt>argparse.ArgumentParser</dt><dd><p>The argument parser with the arguments added.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The argument parser with the arguments added.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>argparse.ArgumentParser</p>
 </dd>
 </dl>
-</section>
 </dd></dl>
 
 </section>
 
-
-           </div>
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="analysis_utils.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Analysis Utilities</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="utility_functions.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Utility Functions</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, Inayath Shaikh
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="utility_functions.html" class="btn btn-neutral float-left" title="Utility Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="conn_utils.html" class="btn btn-neutral float-right" title="Conn utils" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
     </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Simulation Utilities</a><ul>
+<li><a class="reference internal" href="#sim_utils.check_sim_dup"><code class="docutils literal notranslate"><span class="pre">check_sim_dup()</span></code></a></li>
+<li><a class="reference internal" href="#sim_utils.find_sim_num"><code class="docutils literal notranslate"><span class="pre">find_sim_num()</span></code></a></li>
+<li><a class="reference internal" href="#sim_utils.get_module_from_path"><code class="docutils literal notranslate"><span class="pre">get_module_from_path()</span></code></a></li>
+<li><a class="reference internal" href="#sim_utils.get_sim_num"><code class="docutils literal notranslate"><span class="pre">get_sim_num()</span></code></a></li>
+<li><a class="reference internal" href="#sim_utils.json_modify"><code class="docutils literal notranslate"><span class="pre">json_modify()</span></code></a></li>
+<li><a class="reference internal" href="#sim_utils.json_read"><code class="docutils literal notranslate"><span class="pre">json_read()</span></code></a></li>
+<li><a class="reference internal" href="#sim_utils.json_save"><code class="docutils literal notranslate"><span class="pre">json_save()</span></code></a></li>
+<li><a class="reference internal" href="#sim_utils.list_to_numpy"><code class="docutils literal notranslate"><span class="pre">list_to_numpy()</span></code></a></li>
+<li><a class="reference internal" href="#sim_utils.load_data"><code class="docutils literal notranslate"><span class="pre">load_data()</span></code></a></li>
+<li><a class="reference internal" href="#sim_utils.load_full_data"><code class="docutils literal notranslate"><span class="pre">load_full_data()</span></code></a></li>
+<li><a class="reference internal" href="#sim_utils.load_sim_params"><code class="docutils literal notranslate"><span class="pre">load_sim_params()</span></code></a></li>
+<li><a class="reference internal" href="#sim_utils.load_spikes"><code class="docutils literal notranslate"><span class="pre">load_spikes()</span></code></a></li>
+<li><a class="reference internal" href="#sim_utils.locate_data_dir"><code class="docutils literal notranslate"><span class="pre">locate_data_dir()</span></code></a></li>
+<li><a class="reference internal" href="#sim_utils.log_from_rank_0"><code class="docutils literal notranslate"><span class="pre">log_from_rank_0()</span></code></a></li>
+<li><a class="reference internal" href="#sim_utils.network_intialize"><code class="docutils literal notranslate"><span class="pre">network_intialize()</span></code></a></li>
+<li><a class="reference internal" href="#sim_utils.process_data_root"><code class="docutils literal notranslate"><span class="pre">process_data_root()</span></code></a></li>
+<li><a class="reference internal" href="#sim_utils.sim_run_arg_parser"><code class="docutils literal notranslate"><span class="pre">sim_run_arg_parser()</span></code></a></li>
+<li><a class="reference internal" href="#sim_utils.sim_setup_arg_parser"><code class="docutils literal notranslate"><span class="pre">sim_setup_arg_parser()</span></code></a></li>
+</ul>
+</li>
+</ul>
 
-  <hr/>
-
-  <div role="contentinfo">
-    <p>&#169; Copyright 2024, Inayath Shaikh.</p>
-  </div>
-
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
-
-</footer>
+          </div>
         </div>
       </div>
-    </section>
+      
+      
+    </aside>
   </div>
-  <script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
-
-</body>
+</div><script src="_static/documentation_options.js?v=01f34227"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/furo.js?v=5fa4622c"></script>
+    <script src="_static/tabs.js?v=3ee01567"></script>
+    </body>
 </html>
