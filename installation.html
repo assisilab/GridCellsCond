@@ -284,43 +284,59 @@
 </table>
 </div>
 </section>
-<section id="running-a-simulation">
-<h2>Running a simulation<a class="headerlink" href="#running-a-simulation" title="Link to this heading">¶</a></h2>
-<p>To run a simulation, compile the mod files and pass a <code class="docutils literal notranslate"><span class="pre">specs</span></code> file to <code class="docutils literal notranslate"><span class="pre">s_sim_setup.py</span></code>.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>nrnivmodl<span class="w"> </span>mod
+<section id="installation-with-uv">
+<h2>Installation with uv<a class="headerlink" href="#installation-with-uv" title="Link to this heading">¶</a></h2>
+<p>This repository uses <a class="reference external" href="https://github.com/astral-sh/uv">uv</a> for dependency management. You can use <code class="docutils literal notranslate"><span class="pre">uv.lock</span></code> to
+sync your local environment to match the simulation requirements.</p>
+<section id="clone-the-repository">
+<h3>Clone the repository:<a class="headerlink" href="#clone-the-repository" title="Link to this heading">¶</a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/assisilab/GridCellsCond.git
+<span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>GridCellsCond
 </pre></div>
 </div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python<span class="w"> </span>s_sim_setup.py<span class="w"> </span>specs/s_template.py
-</pre></div>
-</div>
-<p>A <code class="docutils literal notranslate"><span class="pre">specs</span></code> file contains a subset of parameters that override the default parameters to run a simulation.
-The default parameters are stored in <code class="docutils literal notranslate"><span class="pre">default_model_params.json</span></code> and <code class="docutils literal notranslate"><span class="pre">default_sim_params.json</span></code>.
-Data from the simulation is saved in <code class="docutils literal notranslate"><span class="pre">data/{sim_id}</span></code>, with sim_id specified in the <code class="docutils literal notranslate"><span class="pre">specs</span></code> file.</p>
-<p>Check out <a class="reference internal" href="simulations.html"><span class="doc">project structure</span></a> for a detailed overview of the project. <code class="docutils literal notranslate"><span class="pre">analysis\examples\BaseModel.ipynb</span></code>
-contains some basic plots generated from the simulated data.</p>
 </section>
-<section id="handling-dependencies">
-<h2>Handling Dependencies<a class="headerlink" href="#handling-dependencies" title="Link to this heading">¶</a></h2>
-<p>This repository is <a class="reference external" href="https://github.com/astral-sh/uv">uv</a> enabled to manage dependencies. You can use <code class="docutils literal notranslate"><span class="pre">uv.lock</span></code> to
-sync your local environment to the exact state in which these simulations were run in.</p>
-<p><strong>Install uv and sync environment:</strong></p>
-<p>In the project directory,</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>curl<span class="w"> </span>-LsSf<span class="w"> </span>https://astral.sh/uv/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
-<span class="gp">$ </span>uv<span class="w"> </span>sync
+<section id="install-uv">
+<h3>Install uv<a class="headerlink" href="#install-uv" title="Link to this heading">¶</a></h3>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--1">Linux</label><div class="tab-content docutils container">
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>wget<span class="w"> </span>-qO-<span class="w"> </span>https://astral.sh/uv/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
 </pre></div>
 </div>
+</div>
+<input class="tab-input" id="tab-set--0-input--2" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--2">macOS/Linux</label><div class="tab-content docutils container">
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>curl<span class="w"> </span>-LsSf<span class="w"> </span>https://astral.sh/uv/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
+</pre></div>
+</div>
+</div>
+<input class="tab-input" id="tab-set--0-input--3" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--3">Windows</label><div class="tab-content docutils container">
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">powershell</span> <span class="n">-ExecutionPolicy</span> <span class="n">ByPass</span> <span class="n">-c</span> <span class="s2">&quot;irm https://astral.sh/uv/install.ps1 | iex&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>See the <a class="reference external" href="https://docs.astral.sh/uv/getting-started/installation/">uv installation guide</a> for alternative installation methods.</p>
+</section>
+<section id="sync-environment">
+<h3>Sync environment<a class="headerlink" href="#sync-environment" title="Link to this heading">¶</a></h3>
+<p>Running <code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">sync</span></code> sets up a virtual environment and installs all the dependencies.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>For Windows: Install NEURON independently through the GUI installer - <a class="reference external" href="https://nrn.readthedocs.io/en/latest/index.html">NEURON</a></p>
+<p>On Windows systems, NEURON must be installed separately through its GUI installer - <a class="reference external" href="https://nrn.readthedocs.io/en/latest/index.html">NEURON</a></p>
 </div>
-<p><strong>Activate env:</strong></p>
+<p>In the project directory, run:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>uv<span class="w"> </span>sync
+</pre></div>
+</div>
+</section>
+<section id="activate-environment">
+<h3>Activate environment:<a class="headerlink" href="#activate-environment" title="Link to this heading">¶</a></h3>
 <div class="tab-set docutils container">
-<input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--1">Linux/macOS</label><div class="tab-content docutils container">
+<input checked="True" class="tab-input" id="tab-set--1-input--1" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--1">Linux/macOS</label><div class="tab-content docutils container">
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">source</span><span class="w"> </span>.venv/bin/activate
 </pre></div>
 </div>
 </div>
-<input class="tab-input" id="tab-set--0-input--2" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--2">Windows</label><div class="tab-content docutils container">
+<input class="tab-input" id="tab-set--1-input--2" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--2">Windows</label><div class="tab-content docutils container">
 <div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">.</span><span class="n">venv</span><span class="p">\</span><span class="n">Scripts</span><span class="p">\</span><span class="n">activate</span>
 </pre></div>
 </div>
@@ -330,16 +346,31 @@ sync your local environment to the exact state in which these simulations were r
 <p class="admonition-title">Caution</p>
 <p>This must be executed in every instance of the terminal. You can configure <a class="reference external" href="https://code.visualstudio.com/docs/python/environments">VS Code</a> to handle python environments.</p>
 </div>
-<p>Compile the mod files:</p>
+</section>
+</section>
+<section id="running-a-simulation">
+<h2>Running a simulation<a class="headerlink" href="#running-a-simulation" title="Link to this heading">¶</a></h2>
+<p>To run a simulation, compile the mod files and pass a <code class="docutils literal notranslate"><span class="pre">specs</span></code> file to <code class="docutils literal notranslate"><span class="pre">s_sim_setup.py</span></code>.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>nrnivmodl<span class="w"> </span>mod
 </pre></div>
 </div>
-</section>
-<section id="cite">
-<h2>Cite<a class="headerlink" href="#cite" title="Link to this heading">¶</a></h2>
-</section>
-<section id="funding">
-<h2>Funding<a class="headerlink" href="#funding" title="Link to this heading">¶</a></h2>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--2-input--1" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--1">Linux/macOS</label><div class="tab-content docutils container">
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python<span class="w"> </span>s_sim_setup.py<span class="w"> </span>specs/s_template.py
+</pre></div>
+</div>
+</div>
+<input class="tab-input" id="tab-set--2-input--2" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--2">Windows</label><div class="tab-content docutils container">
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">$</span> <span class="n">python</span> <span class="n">s_sim_setup</span><span class="p">.</span><span class="n">py</span> <span class="n">specs</span><span class="p">\</span><span class="n">s_template</span><span class="p">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A <code class="docutils literal notranslate"><span class="pre">specs</span></code> file contains a subset of parameters that override the default parameters to run a simulation.
+The default parameters are stored in <code class="docutils literal notranslate"><span class="pre">default_model_params.json</span></code> and <code class="docutils literal notranslate"><span class="pre">default_sim_params.json</span></code>.
+Data from the simulation is saved in <code class="docutils literal notranslate"><span class="pre">data/{sim_id}</span></code>, with <code class="docutils literal notranslate"><span class="pre">sim_id</span></code> specified in the <code class="docutils literal notranslate"><span class="pre">specs</span></code> file.</p>
+<p>For a high-level overview of the repository, checkout the <a class="reference internal" href="simulations.html"><span class="doc">project structure</span></a>.
+<code class="docutils literal notranslate"><span class="pre">analysis/examples/BaseModel.ipynb</span></code> provides some basic plots generated from the simulation data.</p>
 </section>
 </section>
 
@@ -400,10 +431,14 @@ sync your local environment to the exact state in which these simulations were r
             <ul>
 <li><a class="reference internal" href="#">Installation</a><ul>
 <li><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li><a class="reference internal" href="#installation-with-uv">Installation with uv</a><ul>
+<li><a class="reference internal" href="#clone-the-repository">Clone the repository:</a></li>
+<li><a class="reference internal" href="#install-uv">Install uv</a></li>
+<li><a class="reference internal" href="#sync-environment">Sync environment</a></li>
+<li><a class="reference internal" href="#activate-environment">Activate environment:</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#running-a-simulation">Running a simulation</a></li>
-<li><a class="reference internal" href="#handling-dependencies">Handling Dependencies</a></li>
-<li><a class="reference internal" href="#cite">Cite</a></li>
-<li><a class="reference internal" href="#funding">Funding</a></li>
 </ul>
 </li>
 </ul>

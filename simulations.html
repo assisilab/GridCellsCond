@@ -263,9 +263,9 @@ run a single simulation or multiple simulations. The diagram below illustrates a
 </a>
 <a class="only-dark reference internal image-reference" href="_images/workflow_dark.svg"><img alt="Simulation Workflow" class="only-dark" src="_images/workflow_dark.svg" style="width: 720px;" />
 </a>
-<p>The <code class="docutils literal notranslate"><span class="pre">specs</span></code> file is a simple python file that defines a function <code class="docutils literal notranslate"><span class="pre">generate_input_params()</span></code>. This function returns a
-dictionary <code class="docutils literal notranslate"><span class="pre">input_params</span></code> that contains a subset of parameters that overrides the default parameters to run the simulation. Each
-input_params must have a <code class="docutils literal notranslate"><span class="pre">sim_id</span></code> parameter that is used to label the data.</p>
+<p><code class="docutils literal notranslate"><span class="pre">specs</span></code> file defines a function <code class="docutils literal notranslate"><span class="pre">generate_input_params()</span></code>, which returns a dictionary - <code class="docutils literal notranslate"><span class="pre">input_params</span></code>.
+This dictionary contains a subset of parameters that overrides the default parameters to run the simulation. Each <code class="docutils literal notranslate"><span class="pre">input_params</span></code> must have a <code class="docutils literal notranslate"><span class="pre">sim_id</span></code>
+parameter that is used to label the resulting data.</p>
 <div class="literal-block-wrapper docutils container" id="id1">
 <div class="code-block-caption"><span class="caption-text">Example input_params</span><a class="headerlink" href="#id1" title="Link to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">def</span><span class="w"> </span><span class="nf">generate_input_params</span><span class="p">()</span><span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
@@ -286,32 +286,32 @@ input_params must have a <code class="docutils literal notranslate"><span class=
 </pre></div>
 </div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">s_run.py</span></code> is the main simulation file for single simulations. It loads a params file from <code class="docutils literal notranslate"><span class="pre">cache/params_{sim_id}.json</span></code> and calls
-<code class="docutils literal notranslate"><span class="pre">network_init(params)</span></code>. <code class="docutils literal notranslate"><span class="pre">network_init(params)</span></code> returns the full network object along with all the
-instrumentations describing inputs to the network as well as recorders for variables described in params.</p>
-<p>Once the network object is initialized, the simulation runs, and the data is saved in the <code class="docutils literal notranslate"><span class="pre">.hdf5</span></code> format. By default,
-the data is stored in the <code class="docutils literal notranslate"><span class="pre">data/</span></code> directory at the project root, but this location can be modified by changing the <code class="docutils literal notranslate"><span class="pre">data_root</span></code>
-parameter. Within the .hdf5 file, data is stored in the group <code class="docutils literal notranslate"><span class="pre">{sim_num}_{data_id}</span></code>.</p>
-<p>The dataset’s shape is <em>num_cells × time (ms)</em>, where num_cells varies based on the cell type, and the time dimension depends
-on the <code class="docutils literal notranslate"><span class="pre">recorder_dt</span></code> parameter (default = 1 ms).</p>
-<p><code class="docutils literal notranslate"><span class="pre">param.py</span></code> defines a dictionary-like Param or mParam object. When initialized these dictionaries load and combine default
-parameters from <code class="docutils literal notranslate"><span class="pre">default_model_params.json</span></code> and <code class="docutils literal notranslate"><span class="pre">default_sim_params.json</span></code> into a single Param object. The Param class
-also includes a method <code class="docutils literal notranslate"><span class="pre">.update_params(input_params)</span></code> that takes a subset of parameters from input_params and overrides
-the default parameters in that instance. This subset is defined in the <code class="docutils literal notranslate"><span class="pre">specs</span></code> file</p>
-<p><code class="docutils literal notranslate"><span class="pre">s_sim_setup.py</span></code> loads the input_params from specs file that is passed to it. It initializes Param and calls
-<code class="docutils literal notranslate"><span class="pre">.update_params(input_params)</span></code>. This full param dictionary is saved as <code class="docutils literal notranslate"><span class="pre">cache/params_{sim_id}.json</span></code>.
-It then creates the data directory <code class="docutils literal notranslate"><span class="pre">data/{sim_id}</span></code>. If <code class="docutils literal notranslate"><span class="pre">build_conn_matrix</span></code> is set to <code class="docutils literal notranslate"><span class="pre">True</span></code>, <code class="docutils literal notranslate"><span class="pre">s_sim_setup.py</span></code> will
-build the connectivity matrix by running the appropriate config file. These config files define a particular connectivity
-matrix and are stored in <code class="docutils literal notranslate"><span class="pre">network_configs/connections/</span></code>. Once the matrix is built the <code class="docutils literal notranslate"><span class="pre">.hdf5</span></code> file with the synaptic
-weights are stored in <code class="docutils literal notranslate"><span class="pre">cache/matrix_{conn_id}_{sim_id}</span></code>. Therefore before <code class="docutils literal notranslate"><span class="pre">s_run.py</span></code> is called a params .json file
-and the connectivity matrix is expected in the <code class="docutils literal notranslate"><span class="pre">cache/</span></code>
-directory.</p>
+<p><code class="docutils literal notranslate"><span class="pre">param.py</span></code> defines a dictionary-like <code class="docutils literal notranslate"><span class="pre">Param</span></code> or <code class="docutils literal notranslate"><span class="pre">mParam</span></code> object. When initialized, it loads and combines the default
+parameters from <code class="docutils literal notranslate"><span class="pre">default_model_params.json</span></code> and <code class="docutils literal notranslate"><span class="pre">default_sim_params.json</span></code> into a single <code class="docutils literal notranslate"><span class="pre">Param</span></code> object. The <code class="docutils literal notranslate"><span class="pre">Param</span></code> class
+also includes a method <code class="docutils literal notranslate"><span class="pre">.update_params()</span></code> that takes a subset of parameters in the form of <code class="docutils literal notranslate"><span class="pre">input_params</span></code> and overrides
+the default parameters in that instance.</p>
+<p>When run, <code class="docutils literal notranslate"><span class="pre">s_sim_setup.py</span></code> reads the <code class="docutils literal notranslate"><span class="pre">input_params</span></code> dictionary from the specified <code class="docutils literal notranslate"><span class="pre">specs</span></code> file.
+It then initializes a <code class="docutils literal notranslate"><span class="pre">Param</span></code> object and calls its <code class="docutils literal notranslate"><span class="pre">update_params()</span></code> method with <code class="docutils literal notranslate"><span class="pre">input_params</span></code> to generate the complete,
+modified parameter dictionary. This full parameter dictionary is saved as <code class="docutils literal notranslate"><span class="pre">cache/params_{sim_id}.json</span></code>.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">build_conn_matrix</span></code> is set to <code class="docutils literal notranslate"><span class="pre">True</span></code>, <code class="docutils literal notranslate"><span class="pre">s_sim_setup.py</span></code> will build the connectivity matrix by running the appropriate config file.
+These config files define a particular connectivity matrix and are stored in <code class="docutils literal notranslate"><span class="pre">network_configs/connections/</span></code>. Once the matrix is built the <code class="docutils literal notranslate"><span class="pre">.hdf5</span></code>
+file with the synaptic weights is stored in <code class="docutils literal notranslate"><span class="pre">cache/matrix_{conn_id}_{sim_id}.hdf5</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">s_sim_setup.py</span></code> will also create a data directory. By default, this is <code class="docutils literal notranslate"><span class="pre">data/{sim_id}</span></code> in the project root, but this location can be
+modified by changing the <code class="docutils literal notranslate"><span class="pre">data_root</span></code> parameter.</p>
+<p>Therefore before <code class="docutils literal notranslate"><span class="pre">s_run.py</span></code> is called, a <code class="docutils literal notranslate"><span class="pre">params_{sim_id}.json</span></code> file and the connectivity matrix <code class="docutils literal notranslate"><span class="pre">matrix_{conn_id}_{sim_id}.hdf5</span></code>
+is expected in the <code class="docutils literal notranslate"><span class="pre">cache/</span></code> directory along with the a data directory in <code class="docutils literal notranslate"><span class="pre">data/{sim_id}/</span></code>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>If building the matrix for every simulation is unnecessary—such as when focusing on intrinsic cellular properties
 and the synaptic connectivity remains unchanged across simulations—you can use a saved matrix and skip the build process.
 <code class="docutils literal notranslate"><span class="pre">network_init(params)</span></code> looks for these in <code class="docutils literal notranslate"><span class="pre">network_configs/connections/saved_matrices/matrix_{conn_id}_{matrix_id}.hdf5</span></code></p>
 </div>
+<p><code class="docutils literal notranslate"><span class="pre">s_run.py</span></code> is the main simulation file for single simulations. It loads a params file from <code class="docutils literal notranslate"><span class="pre">cache/params_{sim_id}.json</span></code> and calls
+<code class="docutils literal notranslate"><span class="pre">network_init(params)</span></code>. This function returns the full network object along with all the instrumentations describing inputs to the
+network as well as recorders for the NEURON variables.</p>
+<p>Once the network object is initialized, the simulation runs, and the data is saved in the <code class="docutils literal notranslate"><span class="pre">.hdf5</span></code> format in <code class="docutils literal notranslate"><span class="pre">data/{sim_id}/</span></code>. Within the <code class="docutils literal notranslate"><span class="pre">.hdf5</span></code> file,
+data is stored in the group <code class="docutils literal notranslate"><span class="pre">{sim_num}/{data_id}/</span></code>. The dataset’s shape is <em>num_cells × time (ms)</em>, where <em>num_cells</em> varies based on the cell type,
+and the time dimension depends on the <code class="docutils literal notranslate"><span class="pre">recorder_dt</span></code> parameter (default is 1ms).</p>
 <p>Once the simulation is completed i.e <code class="docutils literal notranslate"><span class="pre">s_run.py</span></code> ends successfully, cache files are cleared. <code class="docutils literal notranslate"><span class="pre">s_sim_setup.py</span></code> also saves the modified Params in <code class="docutils literal notranslate"><span class="pre">data/{sim_id}/{sim_id}.json</span></code>
 and the specs file as <code class="docutils literal notranslate"><span class="pre">data/{sim_id}/{sim_id}.py</span></code> for future reference and reproducibiltiy.</p>
 <div class="admonition tip">
@@ -320,19 +320,20 @@ and the specs file as <code class="docutils literal notranslate"><span class="pr
 </div>
 <section id="network-intitialization">
 <h3>Network Intitialization<a class="headerlink" href="#network-intitialization" title="Link to this heading">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">network_init(params)</span></code> called by <code class="docutils literal notranslate"><span class="pre">s_run.py</span></code> loads the matrix and params file from <code class="docutils literal notranslate"><span class="pre">cache/</span></code>. These are then passed on to the <code class="docutils literal notranslate"><span class="pre">Network()</span></code> to initialize the network.
+<p><code class="docutils literal notranslate"><span class="pre">network_init(params)</span></code> called by <code class="docutils literal notranslate"><span class="pre">s_run.py</span></code> loads the matrix from <code class="docutils literal notranslate"><span class="pre">cache/</span></code>. These are then passed on to <code class="docutils literal notranslate"><span class="pre">Network()</span></code> to initialize the network object.
 The Network class initializes the cells (from <code class="docutils literal notranslate"><span class="pre">stellate.py</span></code> and <code class="docutils literal notranslate"><span class="pre">interneuron.py</span></code>) and connects them based on the connectivity defined in the adjacency matrix.
-Once the network object is returned <code class="docutils literal notranslate"><span class="pre">network_init(params)</span></code> passes the network to <code class="docutils literal notranslate"><span class="pre">setup_instrumentation(network)</span></code> located in
-<code class="docutils literal notranslate"><span class="pre">network_configs.instrumentations.{instr_id}_instr.py</span></code>. This function adds input instrumentation (DC inputs, variable velocity, pulse inputs, etc.). It also sets
-NEURON’S global and range variables and adds recorders to record spikes, MP, currents, conductances etc.</p>
+Once the network object is returned by <code class="docutils literal notranslate"><span class="pre">Network()</span></code>, <code class="docutils literal notranslate"><span class="pre">network_init()</span></code> passes this object to <code class="docutils literal notranslate"><span class="pre">setup_instrumentation()</span></code>. This function defined in
+<code class="docutils literal notranslate"><span class="pre">network_configs.instrumentations.{instr_id}_instr.py</span></code>, adds input instrumentation (such as DC inputs, variable velocities, pulse inputs, etc.) and
+recorders to record NEURON variables (such as spikes, MP, currents, conductances, etc.). It also sets NEURON’S global and range variables before returning the network
+object to <code class="docutils literal notranslate"><span class="pre">network_init()</span></code> which then returns it to <code class="docutils literal notranslate"><span class="pre">s_run.py</span></code></p>
 </section>
 <section id="multiple-simulations">
 <h3>Multiple simulations<a class="headerlink" href="#multiple-simulations" title="Link to this heading">¶</a></h3>
 <p>Multiple simulations are initiated with <code class="docutils literal notranslate"><span class="pre">m_sim_setup.py</span></code>. The key differences with single sim is:</p>
 <ul>
 <li><p><strong>Specs file</strong> generates a dictionary of dictionaries with the keys for the outer dimension as simulation numbers.
-Specifying the simulation loops explicitly keeps parameter manipulations clear and readable. Each simulation loops
-should contain a unique sim_num</p>
+To generate this we specify the simulation loops explicitly which keeps the parameter manipulations clear and readable and makes the subsequent
+analysis easier. Each simulation loop should also contain a unique <code class="docutils literal notranslate"><span class="pre">sim_num</span></code> matching the outer the key.</p>
 <div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-text">Parmeter dictionary for multiple simulations</span><a class="headerlink" href="#id2" title="Link to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;0&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;N_stell&quot;</span><span class="p">:</span><span class="mi">384</span><span class="p">,</span><span class="o">..</span><span class="p">},</span>
@@ -372,8 +373,8 @@ should contain a unique sim_num</p>
 </div>
 </div>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">m_run.py</span></code> is called instead of <code class="docutils literal notranslate"><span class="pre">s_run.py</span></code>. <strong>Connectivity matrix</strong> is built in <code class="docutils literal notranslate"><span class="pre">m_run.py</span></code> at the start of every simulation,
-although this behaviour can be turned off.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">m_run.py</span></code> is called instead of <code class="docutils literal notranslate"><span class="pre">s_run.py</span></code> and <strong>Connectivity matrix</strong> is built in <code class="docutils literal notranslate"><span class="pre">m_run.py</span></code> at the start of every simulation,
+although this behavior can be turned off if a saved matrix needs to be used.</p></li>
 </ul>
 </section>
 </section>

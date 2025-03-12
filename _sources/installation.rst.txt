@@ -10,47 +10,62 @@ Prerequisites
    :header-rows: 1
 
 
-
-Running a simulation
+Installation with uv
 --------------------
-To run a simulation, compile the mod files and pass a ``specs`` file to ``s_sim_setup.py``.
+
+This repository uses `uv <https://github.com/astral-sh/uv>`_ for dependency management. You can use ``uv.lock`` to 
+sync your local environment to match the simulation requirements.
+
+Clone the repository:
+^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: console
 
-    $ nrnivmodl mod
-
-.. code-block:: console
-
-    $ python s_sim_setup.py specs/s_template.py
-
-A ``specs`` file contains a subset of parameters that override the default parameters to run a simulation. 
-The default parameters are stored in ``default_model_params.json`` and ``default_sim_params.json``. 
-Data from the simulation is saved in ``data/{sim_id}``, with sim_id specified in the ``specs`` file.
-
-Check out :doc:`project structure <simulations>` for a detailed overview of the project. ``analysis\examples\BaseModel.ipynb`` 
-contains some basic plots generated from the simulated data.
-
-Handling Dependencies
----------------------
-This repository is `uv <https://github.com/astral-sh/uv>`_ enabled to manage dependencies. You can use ``uv.lock`` to 
-sync your local environment to the exact state in which these simulations were run in.
+    $ git clone https://github.com/assisilab/GridCellsCond.git
+    $ cd GridCellsCond
 
 
-**Install uv and sync environment:**
+Install uv
+^^^^^^^^^^
 
-In the project directory,
+.. TAB:: Linux
+    
+    .. code-block:: console
+        
+        $ wget -qO- https://astral.sh/uv/install.sh | sh
 
-.. code-block:: console
+.. TAB:: macOS/Linux
+    
+    .. code-block:: console
+        
+        $ curl -LsSf https://astral.sh/uv/install.sh | sh
 
-    $ curl -LsSf https://astral.sh/uv/install.sh | sh
-    $ uv sync
+.. TAB:: Windows
+
+    .. code-block:: powershell
+
+        powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+
+
+See the `uv installation guide <https://docs.astral.sh/uv/getting-started/installation/>`_ for alternative installation methods.        
+
+Sync environment
+^^^^^^^^^^^^^^^^
+
+Running ``uv sync`` sets up a virtual environment and installs all the dependencies.
 
 .. important::
 
-    For Windows: Install NEURON independently through the GUI installer - `NEURON <https://nrn.readthedocs.io/en/latest/index.html>`_ 
+    On Windows systems, NEURON must be installed separately through its GUI installer - `NEURON <https://nrn.readthedocs.io/en/latest/index.html>`_ 
 
+In the project directory, run:
 
-**Activate env:**
+.. code-block:: console
+    
+    $ uv sync
+
+Activate environment:
+^^^^^^^^^^^^^^^^^^^^^
 
 .. TAB:: Linux/macOS
     
@@ -68,14 +83,30 @@ In the project directory,
 
     This must be executed in every instance of the terminal. You can configure `VS Code <https://code.visualstudio.com/docs/python/environments>`_ to handle python environments.
 
-Compile the mod files:
+
+Running a simulation
+--------------------
+To run a simulation, compile the mod files and pass a ``specs`` file to ``s_sim_setup.py``.
 
 .. code-block:: console
 
     $ nrnivmodl mod
 
-Cite
-----
+.. TAB:: Linux/macOS
+    
+    .. code-block:: console
 
-Funding
--------
+        $ python s_sim_setup.py specs/s_template.py
+
+.. TAB:: Windows
+
+    .. code-block:: powershell
+
+        $ python s_sim_setup.py specs\s_template.py
+
+A ``specs`` file contains a subset of parameters that override the default parameters to run a simulation. 
+The default parameters are stored in ``default_model_params.json`` and ``default_sim_params.json``. 
+Data from the simulation is saved in ``data/{sim_id}``, with ``sim_id`` specified in the ``specs`` file.
+
+For a high-level overview of the repository, checkout the :doc:`project structure <simulations>`.  
+``analysis/examples/BaseModel.ipynb`` provides some basic plots generated from the simulation data.

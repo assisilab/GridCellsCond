@@ -303,6 +303,21 @@ run of multi simulation.</p></li>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="sim_utils.get_git_commit_hash">
+<span class="sig-prename descclassname"><span class="pre">sim_utils.</span></span><span class="sig-name descname"><span class="pre">get_git_commit_hash</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sim_utils.get_git_commit_hash" title="Link to this definition">¶</a></dt>
+<dd><p>Retrieves the current Git commit hash.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The Git commit hash as a string if the command is successful.
+None: If there is an error executing the command.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="sim_utils.get_module_from_path">
 <span class="sig-prename descclassname"><span class="pre">sim_utils.</span></span><span class="sig-name descname"><span class="pre">get_module_from_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#sim_utils.get_module_from_path" title="Link to this definition">¶</a></dt>
 <dd><p>Convert a file path to a module name.</p>
@@ -479,6 +494,14 @@ located for the given <cite>sim_id</cite>.</p></li>
 <dt class="sig sig-object py" id="sim_utils.load_spikes">
 <span class="sig-prename descclassname"><span class="pre">sim_utils.</span></span><span class="sig-name descname"><span class="pre">load_spikes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sim_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sim_num</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="headerlink" href="#sim_utils.load_spikes" title="Link to this definition">¶</a></dt>
 <dd><p>Load spike data for a given simulation ID.</p>
+<p>This function looks for data in the following directories adn returns both
+stellate and interneuron spikes.</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>“data/” (local)</p></li>
+<li><p>“/data/{user}/data/” (global)</p></li>
+</ol>
+</div></blockquote>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -487,14 +510,14 @@ located for the given <cite>sim_id</cite>.</p></li>
 by default 0 (single sim).</p></li>
 </ul>
 </dd>
-</dl>
-<dl class="simple">
-<dt>Returns</dt><dd><dl class="simple">
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
 <dt>tuple</dt><dd><p>A tuple containing two lists of lists:
 - stell_spikes_l: List of spike times for stellate cells.
 - intrnrn_spikes_l: List of spike times for interneurons.</p>
 </dd>
 </dl>
+</p>
 </dd>
 </dl>
 </dd></dl>
@@ -665,6 +688,7 @@ the main setup file.</p>
 <li><a class="reference internal" href="#">Simulation Utilities</a><ul>
 <li><a class="reference internal" href="#sim_utils.check_sim_dup"><code class="docutils literal notranslate"><span class="pre">check_sim_dup()</span></code></a></li>
 <li><a class="reference internal" href="#sim_utils.find_sim_num"><code class="docutils literal notranslate"><span class="pre">find_sim_num()</span></code></a></li>
+<li><a class="reference internal" href="#sim_utils.get_git_commit_hash"><code class="docutils literal notranslate"><span class="pre">get_git_commit_hash()</span></code></a></li>
 <li><a class="reference internal" href="#sim_utils.get_module_from_path"><code class="docutils literal notranslate"><span class="pre">get_module_from_path()</span></code></a></li>
 <li><a class="reference internal" href="#sim_utils.get_sim_num"><code class="docutils literal notranslate"><span class="pre">get_sim_num()</span></code></a></li>
 <li><a class="reference internal" href="#sim_utils.json_modify"><code class="docutils literal notranslate"><span class="pre">json_modify()</span></code></a></li>

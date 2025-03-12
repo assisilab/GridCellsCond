@@ -258,6 +258,28 @@
 variables in the network.</p>
 <p>File loc: <code class="docutils literal notranslate"><span class="pre">network_configs.instrumentations.instr_utils.py</span></code></p>
 <dl class="py function">
+<dt class="sig sig-object py" id="network_configs.instrumentations.instr_utils.generate_pulse_train">
+<span class="sig-prename descclassname"><span class="pre">network_configs.instrumentations.instr_utils.</span></span><span class="sig-name descname"><span class="pre">generate_pulse_train</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">duration_ms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pulse_width_ms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ipi_ms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_delay_ms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.025</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_variation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#network_configs.instrumentations.instr_utils.generate_pulse_train" title="Link to this definition">¶</a></dt>
+<dd><p>Generate a pulse train signal with optional random variations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>- duration_ms</strong> (<em>float</em>) – Total duration of the signal (in milliseconds).</p></li>
+<li><p><strong>- pulse_width_ms</strong> (<em>float</em>) – Base width of each pulse (in milliseconds).</p></li>
+<li><p><strong>- ipi_ms</strong> (<em>float</em>) – Base inter-pulse interval (in milliseconds, measured from the start of one pulse to the start of the next).</p></li>
+<li><p><strong>- start_delay_ms</strong> (<em>float, optional</em>) – Initial delay before the first pulse (in milliseconds). Default is 0.</p></li>
+<li><p><strong>- amplitude</strong> (<em>float, optional</em>) – Amplitude of the pulses. Default is 1.</p></li>
+<li><p><strong>- sampling_rate</strong> (<em>int, optional</em>) – Number of samples per second. Default is 1000 Hz.</p></li>
+<li><p><strong>- random_variation</strong> (<em>float, optional</em>) – Maximum random variation in pulse width and IPI (in milliseconds). Default is 0.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Returns:
+- t (numpy array): Time vector.
+- signal (numpy array): Generated pulse train signal.</p>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="network_configs.instrumentations.instr_utils.recursive_getattr">
 <span class="sig-prename descclassname"><span class="pre">network_configs.instrumentations.instr_utils.</span></span><span class="sig-name descname"><span class="pre">recursive_getattr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr_string</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#network_configs.instrumentations.instr_utils.recursive_getattr" title="Link to this definition">¶</a></dt>
 <dd><p>Recursively retrieves an attribute or calls a method on an object based
@@ -427,6 +449,7 @@ For spikes, create a spike detector and record the spikes.</p>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">Instrumentation Utilities</a><ul>
+<li><a class="reference internal" href="#network_configs.instrumentations.instr_utils.generate_pulse_train"><code class="docutils literal notranslate"><span class="pre">generate_pulse_train()</span></code></a></li>
 <li><a class="reference internal" href="#network_configs.instrumentations.instr_utils.recursive_getattr"><code class="docutils literal notranslate"><span class="pre">recursive_getattr()</span></code></a></li>
 <li><a class="reference internal" href="#network_configs.instrumentations.instr_utils.set_global_variables"><code class="docutils literal notranslate"><span class="pre">set_global_variables()</span></code></a></li>
 <li><a class="reference internal" href="#network_configs.instrumentations.instr_utils.set_intial_noise"><code class="docutils literal notranslate"><span class="pre">set_intial_noise()</span></code></a></li>
