@@ -461,14 +461,14 @@ rate. Default is 150.</p></li>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="analysis_utils.generate_2d_video">
-<span class="sig-prename descclassname"><span class="pre">analysis_utils.</span></span><span class="sig-name descname"><span class="pre">generate_2d_video</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sim_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sheet_to_save</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#analysis_utils.generate_2d_video" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">analysis_utils.</span></span><span class="sig-name descname"><span class="pre">generate_2d_video</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sim_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sheet_to_save</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sim_num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#analysis_utils.generate_2d_video" title="Link to this definition">¶</a></dt>
 <dd><p>Generates a video for the 2D model</p>
 <p>Video is saved as data/{sim_id}/{sim_id}_{sheet_to_save}.mp4</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>sim_id</strong> (<em>str</em>) – The simulation ID to load spikes and parameters.</p></li>
-<li><p><strong>sheet_to_save</strong> (<em>int, optional</em>) – The sheet index to save (1-4). Defaults to 0.
+<li><p><strong>sheet_to_save</strong> (<em>int, optional</em>) – The sheet index to save (0-4). Defaults to 0.
 Index 4 is the interneuron sheet.</p></li>
 </ul>
 </dd>
