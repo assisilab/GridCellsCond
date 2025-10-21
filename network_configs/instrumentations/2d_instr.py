@@ -39,9 +39,9 @@ def setup_instrumentation(network):
         
         instr_utils.set_stell_range_variables(stell,params)
         # Initial noise
-        instr_utils.set_intial_noise(stell,params["stell_init_noise"])
+        instr_utils.set_intial_noise(stell,params["stell_init_noise"],noise_seed=params["init_noise_seed"])
         # Noise
-        instr_utils.set_noise(stell,params["stell_noise"])
+        instr_utils.set_noise(stell,params["stell_noise"],noise_seed=params["noise_seed"])
         #recorders
         instr_utils.setup_recorders(stell,params["record_handle_stell"],params["recorder_dt"])
 
@@ -50,8 +50,8 @@ def setup_instrumentation(network):
         interneuron.ext_dc.dur = params["sim_dur"]
         
         instr_utils.set_intrnrn_range_variables(interneuron,params)        
-        instr_utils.set_intial_noise(interneuron,params["intrnrn_init_noise"])
-        instr_utils.set_noise(interneuron,params["intrnrn_noise"])
+        instr_utils.set_intial_noise(interneuron,params["intrnrn_init_noise"],noise_seed=params["init_noise_seed"])
+        instr_utils.set_noise(interneuron,params["intrnrn_noise"],noise_seed=params["noise_seed"])
         instr_utils.setup_recorders(interneuron,params["record_handle_intrnrn"],params["recorder_dt"])
         
 
