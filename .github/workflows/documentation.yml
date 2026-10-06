@@ -15,8 +15,8 @@ jobs:
         uses: astral-sh/setup-uv@v10.2.0
         with:
           python-version: "3.13"
-      - name: Install the project
-        run: uv sync
+      - name: Install the docs dependencies
+        run: uv sync --locked --only-group docs
       - name: Sphinx build
         run: |
           cd docs/ && uv run sphinx-build source _build

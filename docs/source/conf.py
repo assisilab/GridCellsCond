@@ -13,7 +13,7 @@ sys.path.insert(0, str(Path('../..').resolve()))
 project = 'GridCellsCond'
 copyright = f'2024–{date.today().year}, Inayath Shaikh'
 author = 'Inayath Shaikh'
-release = '0.1.0'
+release = '1.0.0'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -24,6 +24,9 @@ extensions = ['sphinx.ext.autosummary',
                 "sphinx_inline_tabs",
                 'sphinx.ext.imgconverter'
     ]
+
+# The docs CI installs only the docs dependency group, so mock the simulation deps
+autodoc_mock_imports = ['neuron', 'scipy', 'h5py']
 
 templates_path = ['_templates']
 exclude_patterns = ['s_sim_setup.py']

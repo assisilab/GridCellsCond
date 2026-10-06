@@ -12,10 +12,10 @@ Key Features:
 
 | To run simulations  | For analysis and plots: |
 | ------------- | ------------- |
-| Python >= 3.12  | [SciPy>=1.13](https://scipy.org/install/)   |
-| [NEURON>=8.2](https://nrn.readthedocs.io/en/latest/index.html) (with MPI support)  | [matplotlib>=3.9](https://matplotlib.org/stable/) |
-|[numpy >= 1.26.4](https://numpy.org/install/)|[seaborn>=0.13.2](https://seaborn.pydata.org/installing.html) |
-|[h5py >= 3.12](https://docs.h5py.org/en/latest/build.html)||
+| Python 3.13  | [SciPy 1.15.1](https://scipy.org/install/)   |
+| [NEURON 9.0.0](https://nrn.readthedocs.io/en/latest/index.html) (with MPI support)  | [matplotlib 3.10.0](https://matplotlib.org/stable/) |
+|[numpy 2.2.3](https://numpy.org/install/)|[seaborn 0.13.2](https://seaborn.pydata.org/installing.html) |
+|[h5py 3.12.1](https://docs.h5py.org/en/latest/build.html)||
 
 
 
@@ -47,7 +47,7 @@ See [uv installation guide](https://docs.astral.sh/uv/getting-started/installati
 
 ### Sync environment
 
-Running `uv sync` sets up a virtual environment and installs all the dependencies.
+Running `uv sync --locked` sets up a virtual environment and installs all the dependencies.
 
 > [!IMPORTANT]
 > On Windows systems, NEURON must be installed separately through its GUI installer - [NEURON](https://nrn.readthedocs.io/en/latest/index.html)
@@ -55,7 +55,7 @@ Running `uv sync` sets up a virtual environment and installs all the dependencie
 In the project directory, run:
 
 ```bash
-uv sync
+uv sync --locked
 ```
 
 ### Activate environment:
