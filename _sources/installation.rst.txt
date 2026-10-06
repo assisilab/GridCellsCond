@@ -52,7 +52,7 @@ See the `uv installation guide <https://docs.astral.sh/uv/getting-started/instal
 Sync environment
 ^^^^^^^^^^^^^^^^
 
-Running ``uv sync`` sets up a virtual environment and installs all the dependencies.
+Running ``uv sync --locked`` sets up a virtual environment and installs all the dependencies.
 
 .. important::
 
@@ -62,7 +62,7 @@ In the project directory, run:
 
 .. code-block:: console
     
-    $ uv sync
+    $ uv sync --locked
 
 Activate environment:
 ^^^^^^^^^^^^^^^^^^^^^
