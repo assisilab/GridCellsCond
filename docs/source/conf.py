@@ -6,11 +6,12 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 import sys
+from datetime import date
 from pathlib import Path
 sys.path.insert(0, str(Path('../..').resolve()))
 
 project = 'GridCellsCond'
-copyright = '2024, Inayath Shaikh'
+copyright = f'2024–{date.today().year}, Inayath Shaikh'
 author = 'Inayath Shaikh'
 release = '0.1.0'
 
